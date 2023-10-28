@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+    <section id="header">
+        <div class="card"><img src="./images/home/logo3.png" class="logo3" alt=""></div>
+        
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active"href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Recipes</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            </ul>
+        </div>
+     </section>
+
+     <section class="shop" id="page-header">
+        <h4>Quench your thirst</h4>
+        <h2>In just one click</h2>
+        <h1>Feel refreshed</h1>
+        
+     </section>
+
+    <div class="container">
+        <header>
+            <h1>Drinks perfect for all time</h1>
+            <div class="shopping">
+                <img src="images/carts/shopping.svg" alt="#">
+                <span class="quantity">0</span>
+            </div>
+        </header>
+
+        <div class="list">
+
+        </div>
+    </div>
+    <div class="card">
+        <h1>Card</h1>
+        <ul class="listCard">
+        </ul>
+        <div class="checkOut" style="
+        grid-template-columns: 1fr;
+    ">
+                <button id="rzp-button" style="
+    ">Pay with Razorpay</button>
+    <div style="
+        display: flex;
+    ">
+    <div class="total">0</div><div class="closeShopping">Close</div>
+    
+    </div>
+                
+                
+            </div>
+    </div>
+ </section>
+
+ 
+ <footer class="section-p1">
+    <div class="col">
+        <img class="logo" src="images/home/logo3.png" alt="">
+        <h4>Contact</h4>
+        <p><strong>Address: </strong>Hyderabad,India</p>
+        <p><strong>Phone:</strong>47750034/+9180654321</p>
+        <p><strong>Hours:</strong>10:00-18:00, Mon-Sat</p>
+    </div>
+    <div class="col">
+        <h4>About</h4>
+        <a href="#">About Us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact Us</a>
+    </div>
+
+    <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Track My Order</a>
+        <a href="#">Help</a>
+    </div>
+
+    <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Google Play</p>
+        <div class="row">
+            <img class="p1" src="images/home/app.png" alt="">
+            <img class="p2" src="images/home/gp.png" alt="">
+        </div>
+        <p>Secured Payment Gateways</p>
+        <img src="images/home/sp.jpg" alt="">
+    </div>
+
+ </footer>
+
+    <script src="app.js"></script>
+    <!-- Include Razorpay script from CDN -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    // Initialize Razorpay
+    var options = {
+        key: 'rzp_test_Q9LMEKZUQKKe5h', // Replace with your Razorpay Public Key
+        amount: 100, // Amount in paise (can be dynamic based on your product price)
+        currency: 'INR', // Currency code (INR for Indian Rupees)
+        name: 'QuenchThirst',
+        description: 'Payment for Order #123',
+        handler: function(response) {
+            // This function will be called after successful payment
+            alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+            // You can handle further processing here (e.g., update order status, redirect to thank you page, etc.)
+        },
+        prefill: {
+            name: 'John Doe', // Customer's name
+            email: 'johndoe@example.com', // Customer's email
+            contact: '1234567890' // Customer's phone number
+        },
+        notes: {
+            address: 'QuenchThirst' // Optional notes to pass to Razorpay
+        },
+        theme: {
+            color: '#F37254' // Color for the payment button
+        }
+    };
+
+    
+    document.getElementById('rzp-button').onclick = function(e) {
+        // Open Razorpay checkout form when the payment button is clicked
+        options.amount=Number(totalPrice)*100; 
+        var rzp = new Razorpay(options);
+        rzp.open();
+        e.preventDefault();
+    };
+</script>
+
+</body>
+</html>
